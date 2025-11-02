@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadman Zaman | Research & Publications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.4s ease;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Research Section */
+        .research-section {
+            padding: 8rem 0 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .research-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: white;
+            border: 2px solid var(--light);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .research-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .research-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .research-card:hover .research-image img {
+            transform: scale(1.05);
+        }
+
+        .research-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .research-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .research-category {
+            background-color: #e1f0fa;
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .research-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .research-date i {
+            margin-right: 0.3rem;
+        }
+
+        .research-abstract {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .abstract-preview {
+            max-height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .abstract-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(transparent, white);
+        }
+
+        .abstract-full {
+            display: none;
+        }
+
+        .read-more {
+            color: var(--secondary);
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .read-less {
+            color: var(--secondary);
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .research-publication {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .research-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #dde4e6;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .research-container {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .research-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .research-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .research-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-abstract {
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sadman<span>Zaman</span></a>
+            <ul class="nav-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html">Poster</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Research Section -->
+    <section class="research-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Research Papers</h2>
+          
+            
+            <div class="research-container">
+                <!-- Research Paper 1 -->
+                <div class="research-card fade-in delay-1">
+                    <div class="research-image">
+                        <img src="file/image/coal.JPG" alt="Research Paper 1">
+                    </div>
+                    <div class="research-content">
+                        <h3 class="research-title">Hybrid Transition Framework for Coal-Based Power Plants: Integrating Carbon Capture, Waste Heat Recovery, and Renewable Energy Storage for Developing Economies</h3>
+                        <div class="research-meta">
+                            <span class="research-category">Research Paper</span>
+                            <span class="research-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>May 2025</span>
+                            </span>
+                        </div>
+                        <div class="research-abstract">
+                            <div class="abstract-preview">
+                                Coal-based power generation remains a primary energy source for developing nations, but it contributes significantly to global CO₂ emissions and energy inefficiency. This study presents a Hybrid Transition Framework for coal-based power plants that integrates Carbon Capture and Storage (CCS), Waste Heat Recovery (WHR), and Renewable Energy Storage Systems (RESS), coordinated through Artificial Intelligence (AI)-based operational control. The objective is to enhance thermal efficiency, reduce emissions, and ensure economic feasibility while maintaining reliable power output for developing economies such as Bangladesh.
+                            </div>
+                            <div class="abstract-full">
+                                A comprehensive simulation methodology was employed using SolidWorks for plant component modelling, ANSYS for thermal-fluid analysis of the carbon capture and heat recovery units, and MATLAB for efficiency optimisation and AI-driven energy scheduling. The system was evaluated across four configurations: baseline, CCS-only, WHR-only, and the integrated hybrid framework. Performance metrics included net plant efficiency, CO₂ capture rate, waste heat recovery, Levelized Cost of Electricity (LCOE), and payback period.
+
+                                Results indicate that standalone CCS systems capture up to 85% CO₂ but reduce plant efficiency to 32%. The WHR unit, based on an Organic Rankine Cycle (ORC), recovered approximately 10 MW of waste heat, increasing efficiency to 41%. The AI-optimised hybrid model achieved a net efficiency of 36%, 90% CO₂ reduction, and a 15% decrease in LCOE compared to CCS-only configurations. Techno-economic analysis revealed a 6.5-year payback period and a positive net present value (NPV), confirming the framework's technical and financial viability.
+                            </div>
+                            <span class="read-more">Read more</span>
+                            <span class="read-less">Read less</span>
+                        </div>
+                        
+                        <div class="research-publication">
+                            <div class="publication-title">Published in:</div>
+                            <div class="publication-details">
+                                ASHRAE, ASME, IEEE
+                            </div>
+                        </div>
+                        
+                        <div class="research-actions">
+                            <a href="file/_Hybrid Transition Framework for Coal-Based Power Plants_ Integrating Carbon Capture, Waste Heat Recovery, and Renewable Energy Storage for Developing Economies.pdf" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> View Paper
+                            </a>
+                            <a href="file/_Hybrid Transition Framework for Coal-Based Power Plants_ Integrating Carbon Capture, Waste Heat Recovery, and Renewable Energy Storage for Developing Economies.pdf" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Paper 2 -->
+                <div class="research-card fade-in delay-2">
+                    <div class="research-image">
+                        <img src="file/image/bio.jpg" alt="Research Paper 2">
+                    </div>
+                    <div class="research-content">
+                        <h3 class="research-title">AI-Driven Adaptive Flow Control in Bio-Inspired Microfluidic Channels for Smart Cooling Systems</h3>
+                        <div class="research-meta">
+                            <span class="research-category">Engineering Paper</span>
+                            <span class="research-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>June 2025</span>
+                            </span>
+                        </div>
+                        <div class="research-abstract">
+                            <div class="abstract-preview">
+                                The rapid advancement of high-performance electronic and energy systems has created a critical need for intelligent thermal management solutions capable of maintaining efficiency under dynamic operating conditions. This study introduces an AI-driven adaptive flow control approach implemented in bio-inspired microfluidic channels for next-generation smart cooling systems. Inspired by natural fluidic structures, the bio-inspired microchannel design enhances heat transfer while reducing pressure drop, providing an inherently efficient thermal transport pathway.
+                            </div>
+                            <div class="abstract-full">
+                                The proposed system employs a machine learning-based algorithm to continuously monitor temperature distribution and dynamically adjust fluid flow rates, enabling adaptive thermal regulation in real time. Computational fluid dynamics (CFD) simulations coupled with AI control reveal that the adaptive system can achieve up to 25% improvement in heat dissipation and 15% reduction in pumping power compared to conventional microchannel designs. Moreover, the bio-inspired configuration demonstrates improved flow uniformity, mitigating hotspots and ensuring consistent cooling across high-heat flux regions.
+
+                                The integration of AI with bio-inspired microfluidics offers a scalable, energy-efficient, and intelligent solution for thermal management in electronics, HVAC systems, and renewable energy devices. These results underscore the potential of combining machine learning algorithms with nature-inspired fluidic architectures to develop smart cooling systems that respond dynamically to varying thermal loads, contributing to both enhanced system reliability and reduced energy consumption. The findings of this study provide a foundation for future experimental validation and optimization of AI-integrated microfluidic cooling technologies, highlighting their applicability in emerging high-performance and environmentally sustainable systems.
+                            </div>
+                            <span class="read-more">Read more</span>
+                            <span class="read-less">Read less</span>
+                        </div>
+                        
+                        <div class="research-publication">
+                            <div class="publication-title">Presented at:</div>
+                            <div class="publication-details">
+                                ASHRAE, ASME, IEEE
+                            </div>
+                        </div>
+                        
+                        <div class="research-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> View Paper
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Paper 3 -->
+                <div class="research-card fade-in delay-3">
+                    <div class="research-image">
+                        <img src="file/image/cool.jpg" alt="Research Paper 3">
+                    </div>
+                    <div class="research-content">
+                        <h3 class="research-title">Design and Optimization of Mechanically Tunable Radiative Cooling Systems for Adaptive Thermal Management in Tropical Climates</h3>
+                        <div class="research-meta">
+                            <span class="research-category">Research Thesis</span>
+                            <span class="research-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>April 2025</span>
+                            </span>
+                        </div>
+                        <div class="research-abstract">
+                            <div class="abstract-preview">
+                                The growing demand for cooling in tropical climates has intensified energy consumption and environmental impact, highlighting the need for sustainable thermal management solutions. Radiative cooling, which passively transfers heat from a surface to the cold outer space through the atmospheric transparency window, offers a promising pathway for energy-efficient cooling. However, conventional radiative cooling systems are typically static and cannot adapt to varying environmental and operational conditions, leading to suboptimal performance under fluctuating solar irradiance and ambient temperatures.
+                            </div>
+                            <div class="abstract-full">
+                                This study presents the design, modeling, and optimization of a mechanically tunable radiative cooling system capable of adaptive thermal regulation specifically for tropical climates. The proposed system integrates dynamically adjustable surface geometries with high-emissivity coatings, allowing modulation of thermal radiation in response to real-time environmental changes. Detailed computational simulations were performed to evaluate the influence of material properties, surface configurations, and mechanical tuning parameters on radiative performance. Experimental prototypes were developed and tested under realistic tropical conditions to validate the system's capability for adaptive cooling.
+
+                                Results demonstrate that the mechanically tunable radiative surfaces can achieve up to 25–30% higher cooling performance compared to conventional static systems, effectively reducing peak surface temperatures and mitigating reliance on conventional air-conditioning. The study also examines the effects of diurnal and seasonal variations on system efficiency and proposes practical guidelines for integrating tunable radiative surfaces into residential and commercial buildings. By combining passive radiative cooling with mechanical adaptability, this work advances a scalable, low-energy approach to climate-responsive thermal management. The findings highlight the potential of mechanically tunable radiative cooling systems to improve indoor comfort, lower energy demand, and support sustainable building design in tropical regions, representing a significant step toward the development of smart, adaptive cooling technologies.
+                            </div>
+                            <span class="read-more">Read more</span>
+                            <span class="read-less">Read less</span>
+                        </div>
+                        
+                        <div class="research-publication">
+                            <div class="publication-title">Publication:</div>
+                            <div class="publication-details">
+                                ASHRAE, ASME, IEEE
+                            </div>
+                        </div>
+                        
+                        <div class="research-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> View Paper
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Paper 4 -->
+                <div class="research-card fade-in delay-1">
+                    <div class="research-image">
+                        <img src="file/image/vib.jpg" alt="Research Paper 4">
+                    </div>
+                    <div class="research-content">
+                        <h3 class="research-title">AI-Driven Adaptive Friction and Vibration Control for Minimizing Energy Loss in Next-Generation Mechanical Systems</h3>
+                        <div class="research-meta">
+                            <span class="research-category">Journal Paper</span>
+                            <span class="research-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Sep 2025</span>
+                            </span>
+                        </div>
+                        <div class="research-abstract">
+                            <div class="abstract-preview">
+                                Energy efficiency is one of the central challenges of modern mechanical engineering. Across diverse industries such as automotive, aerospace, manufacturing, robotics, and renewable energy, a significant portion of input energy is lost due to friction, vibration, and heat dissipation. Studies estimate that nearly 20–40% of global industrial energy is consumed by frictional losses, while 10–20% is wasted through vibration-induced inefficiencies and thermal dissipation in rotating machinery and mechanical systems.
+                            </div>
+                            <div class="abstract-full">
+                                These losses not only reduce operational efficiency but also accelerate wear, increase maintenance costs, and contribute to higher carbon emissions. In a world striving toward sustainability and net-zero energy targets, reducing such losses is both an economic and environmental necessity.
+
+                                Traditional strategies for minimizing energy losses—such as lubrication, advanced coatings, passive vibration dampers, and material engineering—have shown effectiveness in specific conditions but remain fundamentally static in nature. They are unable to adapt to changing loads, environmental fluctuations, or dynamic system behaviors in real time. As mechanical systems become more complex and operate under variable conditions (e.g., electric vehicle drivetrains, wind turbines in fluctuating wind speeds, or aerospace engines under variable thrust requirements), these conventional approaches are increasingly insufficient.
+
+                                The rise of Industry 4.0, the Internet of Things (IoT), and Artificial Intelligence (AI) offers a transformative opportunity to revolutionize energy conservation in mechanical systems. AI enables predictive modeling, adaptive control, and real-time decision-making, allowing machines to move beyond passive efficiency measures toward self-optimizing systems. With the integration of IoT sensors, digital twins, and machine learning algorithms, it is now possible to continuously monitor mechanical states, predict energy loss patterns, and dynamically adjust system parameters such as lubrication flow, damping coefficients, or micro-surface properties.
+                            </div>
+                            <span class="read-more">Read more</span>
+                            <span class="read-less">Read less</span>
+                        </div>
+                        
+                        <div class="research-publication">
+                            <div class="publication-title">Published in:</div>
+                            <div class="publication-details">
+                                ASHRAE, ASME, IEEE
+                            </div>
+                        </div>
+                        
+                        <div class="research-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> View Paper
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">Sadman<span>Zaman</span></div>
+            <ul class="footer-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html">Poster</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="copyright">© 2023 Sadman Zaman. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Hide/show navbar on scroll
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past 100px - hide navbar
+                navbar.classList.add('nav-hidden');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = 1;
+                        element.style.animation = 'fadeIn 1s ease forwards';
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Hamburger menu toggle (for mobile)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Read more functionality
+            const readMoreLinks = document.querySelectorAll('.read-more');
+            const readLessLinks = document.querySelectorAll('.read-less');
+            
+            readMoreLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const abstract = this.parentElement;
+                    const preview = abstract.querySelector('.abstract-preview');
+                    const full = abstract.querySelector('.abstract-full');
+                    const readMore = abstract.querySelector('.read-more');
+                    const readLess = abstract.querySelector('.read-less');
+                    
+                    preview.style.display = 'none';
+                    full.style.display = 'block';
+                    readMore.style.display = 'none';
+                    readLess.style.display = 'inline-block';
+                });
+            });
+            
+            readLessLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const abstract = this.parentElement;
+                    const preview = abstract.querySelector('.abstract-preview');
+                    const full = abstract.querySelector('.abstract-full');
+                    const readMore = abstract.querySelector('.read-more');
+                    const readLess = abstract.querySelector('.read-less');
+                    
+                    preview.style.display = 'block';
+                    full.style.display = 'none';
+                    readMore.style.display = 'inline-block';
+                    readLess.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

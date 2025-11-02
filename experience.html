@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadman Zaman | Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.4s ease;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 8rem 0 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
+            flex: 0 0 80px;
+            margin-right: 1.5rem;
+        }
+
+        .company-logo img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .position {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .duration i {
+            margin-right: 0.5rem;
+        }
+
+        .key-responsibilities h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .responsibilities-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .responsibilities-list li {
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .responsibilities-list li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .achievements {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .achievements h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .achievements-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .achievements-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .achievements-list li:before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background-color: #e1f0fa;
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+            }
+            
+            .company-logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .experience-card {
+                padding: 1.5rem;
+            }
+            
+            .company-name {
+                font-size: 1.3rem;
+            }
+            
+            .position {
+                font-size: 1.1rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sadman<span>Zaman</span></a>
+            <ul class="nav-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html">Poster</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="experience.html" class="active">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Work Experience</h2>
+            <div class="experience-container">
+                <!-- Experience 1 -->
+                <div class="experience-card fade-in delay-1">
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <img src="file/10min.png" alt="Company Logo">
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">10 Minutes School</h3>
+                            <p class="position">Junior Font-End Engineer</p>
+                            <div class="duration">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Aug 2025 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-responsibilities">
+                        <h4>Key Responsibilities:</h4>
+                        <ul class="responsibilities-list">
+                            <li>Develop and maintain responsive, user-friendly web interfaces using HTML, CSS, and JavaScript (React/Vue preferred).</li>
+                            <li>Collaborate with designers, back-end developers, and product managers to translate UI/UX designs into functional web pages.</li>
+                            <li>Optimize website performance for speed, scalability, and smooth user experience across devices and browsers.</li>
+                            <li>Implement reusable components and follow coding best practices to ensure consistency across the platform.</li>
+                            <li>Debug and fix UI issues, ensuring high-quality, pixel-perfect designs.</li>
+                            <li>Integrate APIs and handle dynamic data rendering on the front end.</li>
+                            <li>Participate in code reviews and contribute to improving front-end architecture.</li>
+                            <li>Stay updated with the latest front-end technologies and suggest innovative UI/UX improvements.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul class="achievements-list">
+                            <li>Received "Most Junior Employee" award in Oct 2025</li>
+                            <li>Successfully delivered 1 major project ahead of schedule</li>
+                            <li>Reduced system bugs by 75% through improved testing protocols</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                 <!-- Experience 2 -->
+                <div class="experience-card fade-in delay-1">
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <img src="file/image/ash.png" alt="Company Logo">
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">ASHREA</h3>
+                            <p class="position">Co-Chair Communication & Publication Committee</p>
+                            <div class="duration">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Sep 2025 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-responsibilities">
+                        <h4>Key Responsibilities:</h4>
+                        <ul class="responsibilities-list">
+                            <li>Lead and coordinate all communication and publication activities for the ASHRAE MIST Student Branch..</li>
+                            <li>Oversee content creation, including newsletters, event reports, posters, and social media publications.</li>
+                            <li>Collaborate with the executive team to promote technical events, workshops, and seminars effectively.</li>
+                            <li>Ensure brand consistency in all visual and written materials following ASHRAE's communication guidelines.</li>
+                            <li>Manage digital outreach, increasing student engagement through social media and official communication platforms.</li>
+                            <li>Guide and supervise the publication team to maintain timely and high-quality content delivery.</li>
+                            <li>Guide and supervise the publication team to maintain timely and high-quality content delivery.</li>
+                            <li>Coordinate with external organizations and university authorities for public relations and event coverage.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul class="achievements-list">
+                            <li>Successfully managed and published newsletters, event posters, and technical articles, enhancing the branch's visibility.</li>
+                            <li>Increased student engagement on social media platforms through well-planned communication strategies.</li>
+                            <li>Documented and archived key events such as workshops, seminars, and competitions for institutional records.</li>
+                            <li>Collaborated with external organizations to promote technical initiatives and increase the branch's outreach.</li>
+                            <li>Mentored junior committee members, improving their skills in content creation, editing, and digital communication.</li>
+                            <li>Played a key role in enhancing the professional image of the MIST Student Branch through effective publications.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <!-- Experience 3 -->
+                <div class="experience-card fade-in delay-1">
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <img src="file/image/asme.png" alt="Company Logo">
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">ASME</h3>
+                            <p class="position">Plant Engineering and Maintainance</p>
+                            <div class="duration">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Sep 2025 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-responsibilities">
+                        <h4>Key Responsibilities:</h4>
+                        <ul class="responsibilities-list">
+                            <li>Monitor and maintain the operational efficiency of mechanical and electrical systems in campus or lab facilities.</li>
+                            <li>Assist in designing and implementing maintenance schedules for equipment, machinery, and plant systems.</li>
+                            <li>Troubleshoot and repair mechanical, electrical, and hydraulic components as required.</li>
+                            <li>Collaborate with team members to ensure safe and smooth operation of all engineering equipment.</li>
+                            <li>Document maintenance activities, including inspection reports, repairs, and preventive measures.</li>
+                            <li>Ensure compliance with safety standards and mechanical regulations during maintenance operations.</li>
+                            <li>Support innovation projects by providing engineering expertise and technical solutions for plant-related challenges.</li>
+                           
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul class="achievements-list">
+                            <li>Monitor and maintain the operational efficiency of mechanical and electrical systems in campus or lab facilities.</li>
+                            <li>Assist in designing and implementing maintenance schedules for equipment, machinery, and plant systems.</li>
+                            <li>Support innovation projects by providing engineering expertise and technical solutions for plant-related challenges.</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <!-- Experience 4 -->
+                <div class="experience-card fade-in delay-2">
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <img src="file/image/inno.jpg" alt="Company Logo">
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">MIST INNOVATION CLUB</h3>
+                            <p class="position">App & Web Development</p>
+                            <div class="duration">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>May2024 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-responsibilities">
+                        <h4>Key Responsibilities:</h4>
+                        <ul class="responsibilities-list">
+                            <li>Design and develop innovative web and mobile applications to support club projects and events.</li>
+                            <li>Collaborate with cross-functional teams (design, robotics, and electronics) to integrate digital solutions into real-world prototypes.</li>
+                            <li>Build responsive and interactive interfaces using HTML, CSS, JavaScript, and frameworks like React or Flutter.</li>
+                            <li>Maintain and update the club's website, ensuring smooth performance and user engagement.</li>
+                            <li>Participate in hackathons, workshops, and innovation challenges, representing the club's technical wing.</li>
+                            <li>Collaborate with senior developers to test, debug, and deploy applications effectively.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul class="achievements-list">
+                            <li>Developed and deployed multiple web and mobile applications to support club activities and innovation projects.</li>
+                            <li>Contributed to digital innovation by creating interactive platforms for project showcasing and event registration.</li>
+                            <li>Presented tech-based solutions during workshops, hackathons, and innovation challenges at MIST.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 5 -->
+                <div class="experience-card fade-in delay-3">
+                    <div class="experience-header">
+                        <div class="company-logo">
+                            <img src="file/image/bobo.png" alt="Company Logo">
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">MIST ROBOTIC CLUB</h3>
+                            <p class="position">Technical Team</p>
+                            <div class="duration">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Jun 2025 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-responsibilities">
+                        <h4>Key Responsibilities:</h4>
+                        <ul class="responsibilities-list">
+                            <li>Design, build, and program robotic systems for academic and competitive projects.</li>
+                            <li>Develop and integrate control systems using microcontrollers (e.g., Arduino, ESP8266, Raspberry Pi).</li>
+                            <li>Work on automation and AI-based projects, including sensor integration and motion control.</li>
+                            <li>Test, troubleshoot, and optimize robotic prototypes for better performance and stability.</li>
+                            <li>Assist in CAD design and simulation of mechanical components for robot structure.</li>
+                            <li>Participate in national and inter-university robotics competitions, representing MIST.Mentor junior members by sharing technical knowledge and guiding project development.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Key Achievements:</h4>
+                        <ul class="achievements-list">
+                            <li>Successfully designed and built functional robotic prototypes for inter-university competitions.</li>
+                            <li>Assisted in creating CAD designs and mechanical assemblies for multiple robot projects</li>
+                            <li>Collaborated on a machine-gun-mounted RC vehicle project demonstrating advanced targeting and automation.Trained new members on coding, circuit design, and robot assembly techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category fade-in delay-1">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">MongoDB</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">AWS</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">REST APIs</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in delay-2">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Leadership</span>
+                        <span class="skill-item">Team Management</span>
+                        <span class="skill-item">Problem Solving</span>
+                        <span class="skill-item">Communication</span>
+                        <span class="skill-item">Project Management</span>
+                        <span class="skill-item">Agile Methodology</span>
+                        <span class="skill-item">Mentoring</span>
+                        <span class="skill-item">Presentation</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category fade-in delay-3">
+                    <h3>Domain Expertise</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Web Development</span>
+                        <span class="skill-item">Machine Learning</span>
+                        <span class="skill-item">Data Analytics</span>
+                        <span class="skill-item">Cloud Computing</span>
+                        <span class="skill-item">DevOps</span>
+                        <span class="skill-item">UI/UX Design</span>
+                        <span class="skill-item">Software Architecture</span>
+                        <span class="skill-item">Database Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">Sadman<span>Zaman</span></div>
+            <ul class="footer-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html">Poster</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="copyright">© 2023 Sadman Zaman. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Hide/show navbar on scroll
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past 100px - hide navbar
+                navbar.classList.add('nav-hidden');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = 1;
+                        element.style.animation = 'fadeIn 1s ease forwards';
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Hamburger menu toggle (for mobile)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

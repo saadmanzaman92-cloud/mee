@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadman Zaman | Research Poster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.4s ease;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Poster Section */
+        .poster-section {
+            padding: 8rem 0 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .poster-container {
+            display: flex;
+            gap: 3rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .poster-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .poster-image {
+            flex: 0 0 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .poster-image img {
+            max-width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .poster-details {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .poster-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .poster-meta {
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            margin-bottom: 1rem;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-value {
+            color: var(--text-light);
+        }
+
+        .poster-objective {
+            margin-bottom: 2rem;
+        }
+
+        .objective-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .objective-text {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .poster-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #dde4e6;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .poster-container {
+                flex-direction: column;
+            }
+            
+            .poster-image {
+                flex: 0 0 auto;
+                padding: 1.5rem;
+            }
+            
+            .poster-details {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .poster-title {
+                font-size: 1.7rem;
+            }
+            
+            .poster-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .poster-details {
+                padding: 1.5rem;
+            }
+            
+            .poster-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sadman<span>Zaman</span></a>
+            <ul class="nav-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html" class="active">Poster</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Poster Section -->
+    <section class="poster-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Research Poster-1</h2>
+            <div class="poster-container fade-in delay-1">
+                <div class="poster-image">
+                    <img src="file/image/Cooling and Heat Management Systems in Electric Vehicles (EVs).jpg" alt="Research Poster">
+                </div>
+                <div class="poster-details">
+                    <h3 class="poster-title">Cooling and Heat Management Systems in Electric Vehicles (EVs)</h3>
+                    
+                    <div class="poster-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Presented By:</div>
+                            <div class="meta-value">Sadman Zaman</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Event:</div>
+                            <div class="meta-value">International Conference on Sustainable Energy Systems</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Date:</div>
+                            <div class="meta-value">Oct 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="poster-objective">
+                        <h4 class="objective-title">Objective</h4>
+                        <p class="objective-text">
+                          Electric Vehicles (EVs) are transforming modern transportation by replacing internal combustion engines with electric powertrains. However, EV components—especially battery packs, power electronics, and motors—generate significant heat during operation.
+ To maintain performance, efficiency, and safety, effective cooling and heat management systems are essential. These systems are designed using mechanical principles of heat transfer, fluid dynamics, and material selection to regulate temperature within optimal limits.
+                        </p>
+                    </div>
+                    
+                    <div class="poster-actions">
+                        <a href="file/Cooling and Heat Management Systems in Electric Vehicles (EVs).pdf" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download Poster
+                        </a>
+                        <a href="file/Cooling and Heat Management Systems in Electric Vehicles (EVs).pdf" class="btn btn-secondary">
+                            <i class="fas fa-file-pdf"></i> View Full Paper
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- Poster Section -->
+    <section class="poster-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Research Poster-2</h2>
+            <div class="poster-container fade-in delay-1">
+                <div class="poster-image">
+                    <img src="file/image/Hybrid Solar–Thermal Energy Recovery System for Sustainable Industrial Efficiency.png" alt="Research Poster">
+                </div>
+                <div class="poster-details">
+                    <h3 class="poster-title">Hybrid Solar–Thermal Energy Recovery System for Sustainable Industrial Efficiency</h3>
+                    
+                    <div class="poster-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Presented By:</div>
+                            <div class="meta-value">Sadman Zaman</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Event:</div>
+                            <div class="meta-value">Robolution-2025 <span> Organized by MIST Robotics Club</span></div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Date:</div>
+                            <div class="meta-value">Nov 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="poster-objective">
+                        <h4 class="objective-title">Objective</h4>
+                        <p class="objective-text">
+                          The objective of this project is to develop a hybrid solar–thermal energy recovery system that combines solar thermal power and industrial waste-heat utilization to enhance energy efficiency, reduce operational costs, and minimize carbon emissions for sustainable industrial applications.
+                        </p>
+                    </div>
+                    
+                    <div class="poster-actions">
+                        <a href="file/Final Hybrid Solar–Thermal Energy Recovery System for Sustainable Industrial Efficiency .pdf" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download Poster
+                        </a>
+                        <a href="file/Final Hybrid Solar–Thermal Energy Recovery System for Sustainable Industrial Efficiency .pdf" class="btn btn-secondary">
+                            <i class="fas fa-file-pdf"></i> View Full Paper
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">Sadman<span>Zaman</span></div>
+            <ul class="footer-links">
+                <li><a href="cv.html">Home</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="poster.html">Poster</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="copyright">© 2023 Sadman Zaman. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Hide/show navbar on scroll
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down & past 100px - hide navbar
+                navbar.classList.add('nav-hidden');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('nav-hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = 1;
+                        element.style.animation = 'fadeIn 1s ease forwards';
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Hamburger menu toggle (for mobile)
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
